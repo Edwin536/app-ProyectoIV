@@ -1,0 +1,121 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h3">Guardar Cliente</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <a class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1" routerLink="/clientes">
+                <i class="bi bi-backspace"></i>
+                Regresar
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Complete todos los campos requeridos
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formulario" (ngSubmit)="Guardar()">
+            <div class="mb-3">
+                <label class="form-label" for="nombre">Nombre: <span class="text-danger">*</span></label>
+                <input 
+                    type="text" 
+                    id="nombre" 
+                    placeholder="Ingrese el nombre..." 
+                    formControlName="nombre" 
+                    class="form-control">
+                <div *ngIf="nombre.errors && (nombre.dirty || nombre.touched)" class="text-danger">
+                    El nombre es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="apellido">Apellido: <span class="text-danger">*</span></label>
+                <input 
+                    type="text" 
+                    id="apellido" 
+                    placeholder="Ingrese el apellido..." 
+                    formControlName="apellido" 
+                    class="form-control">
+                <div *ngIf="apellido.errors && (apellido.dirty || apellido.touched)" class="text-danger">
+                    El apellido es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="pasaporte">Pasaporte: <span class="text-danger">*</span></label>
+                <input 
+                    type="text" 
+                    id="pasaporte" 
+                    placeholder="Ingrese el número de pasaporte..." 
+                    formControlName="pasaporte" 
+                    class="form-control">
+                <div *ngIf="pasaporte.errors && (pasaporte.dirty || pasaporte.touched)" class="text-danger">
+                    El pasaporte es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="nacionalidad">Nacionalidad: <span class="text-danger">*</span></label>
+                <input 
+                    type="text" 
+                    id="nacionalidad" 
+                    placeholder="Ingrese la nacionalidad..." 
+                    formControlName="nacionalidad" 
+                    class="form-control">
+                <div *ngIf="nacionalidad.errors && (nacionalidad.dirty || nacionalidad.touched)" class="text-danger">
+                    La nacionalidad es requerida.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="correo">Correo Electrónico: <span class="text-danger">*</span></label>
+                <input 
+                    type="email" 
+                    id="correo" 
+                    placeholder="Ingrese el correo electrónico..." 
+                    formControlName="correo" 
+                    class="form-control">
+                <div *ngIf="correo.errors && (correo.dirty || correo.touched)" class="text-danger">
+                    El correo es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="telefono">Teléfono: <span class="text-danger">*</span></label>
+                <input 
+                    type="text" 
+                    id="telefono" 
+                    placeholder="Ingrese el número de teléfono..." 
+                    formControlName="telefono" 
+                    class="form-control">
+                <div *ngIf="telefono.errors && (telefono.dirty || telefono.touched)" class="text-danger">
+                    El teléfono es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="estado">Estado: <span class="text-danger">*</span></label>
+                <select id="estado" formControlName="estado" class="form-control">
+                    <option [value]="true">Activo</option>
+                    <option [value]="false">Inactivo</option>
+                </select>
+                <div *ngIf="estado.errors && (estado.dirty || estado.touched)" class="text-danger">
+                    El estado es requerido.
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-outline-primary me-md-2" type="submit" [disabled]="!formulario.valid">
+                    <span *ngIf="cargando"><i class="bi bi-hourglass-split"></i> Guardando...</span>
+                    <span *ngIf="!cargando"><i class="bi bi-plus-circle"></i> Guardar</span>
+                </button>
+                <button class="btn btn-outline-secondary" type="reset">
+                    <i class="bi bi-x-circle"></i>
+                    Limpiar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

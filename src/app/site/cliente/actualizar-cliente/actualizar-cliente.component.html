@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h3">Actualizar Cliente</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <a class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1" routerLink="/clientes">
+                <i class="bi bi-backspace"></i>
+                Regresar
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Complete todos los campos requeridos
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formulario" (ngSubmit)="Guardar()">
+            <div class="mb-3">
+                <label class="form-label" for="nombre">Nombre: <span class="text-danger">*</span></label>
+                <input type="text" id="nombre" formControlName="nombre" class="form-control" placeholder="Ingrese el nombre...">
+                <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="text-danger">
+                    El nombre es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="apellido">Apellido: <span class="text-danger">*</span></label>
+                <input type="text" id="apellido" formControlName="apellido" class="form-control" placeholder="Ingrese el apellido...">
+                <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)" class="text-danger">
+                    El apellido es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="pasaporte">Pasaporte: <span class="text-danger">*</span></label>
+                <input type="text" id="pasaporte" formControlName="pasaporte" class="form-control" placeholder="Ingrese el pasaporte...">
+                <div *ngIf="pasaporte.invalid && (pasaporte.dirty || pasaporte.touched)" class="text-danger">
+                    El pasaporte es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="nacionalidad">Nacionalidad: <span class="text-danger">*</span></label>
+                <input type="text" id="nacionalidad" formControlName="nacionalidad" class="form-control" placeholder="Ingrese la nacionalidad...">
+                <div *ngIf="nacionalidad.invalid && (nacionalidad.dirty || nacionalidad.touched)" class="text-danger">
+                    La nacionalidad es requerida.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="correo">Correo: <span class="text-danger">*</span></label>
+                <input type="email" id="correo" formControlName="correo" class="form-control" placeholder="Ingrese el correo...">
+                <div *ngIf="correo.invalid && (correo.dirty || correo.touched)" class="text-danger">
+                    El correo es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="telefono">Teléfono: <span class="text-danger">*</span></label>
+                <input type="text" id="telefono" formControlName="telefono" class="form-control" placeholder="Ingrese el teléfono...">
+                <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" class="text-danger">
+                    El teléfono es requerido.
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-outline-primary me-md-2" type="submit" [disabled]="!formulario.valid">
+                    <ng-container *ngIf="cargando; else guardarTexto">
+                        <i class="bi bi-hourglass-split"></i> Guardando...
+                    </ng-container>
+                    <ng-template #guardarTexto>
+                        <i class="bi bi-plus-circle"></i> Guardar
+                    </ng-template>
+                </button>
+                <button class="btn btn-outline-secondary" type="reset">
+                    <i class="bi bi-x-circle"></i> Limpiar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h3">Guardar Destino</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group me-2">
+        <a class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" routerLink="/destinos">
+          <i class="bi bi-backspace"></i>
+          Regresar
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-header">
+      Complete todos los campos requeridos
+    </div>
+    <div class="card-body">
+      <form [formGroup]="formulario" (ngSubmit)="Guardar()">
+        <div class="row">
+          <!-- Campo: Nombre -->
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Nombre: <span class="text-danger">*</span></label>
+              <input type="text" placeholder="Ingrese el nombre del destino..." formControlName="nombre" class="form-control">
+              <span *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="text-danger">
+                El nombre es requerido.
+              </span>
+            </div>
+          </div>
+  
+          <!-- Campo: Descripción -->
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Descripción: <span class="text-danger">*</span></label>
+              <input type="text" placeholder="Ingrese una descripción..." formControlName="descripcion" class="form-control">
+              <span *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="text-danger">
+                La descripción es requerida.
+              </span>
+            </div>
+          </div>
+  
+          <!-- Campo: País -->
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">País: <span class="text-danger">*</span></label>
+              <select class="form-select" formControlName="pais">
+                <option value="" disabled selected>Seleccione un país</option>
+                <option *ngFor="let p of arrPais" [value]="p.idPais">{{ p.nombre }}</option>
+              </select>
+              <span *ngIf="pais.invalid && (pais.dirty || pais.touched)" class="text-danger">
+                El país es requerido.
+              </span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Botones de acción -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="btn btn-dark me-md-2" type="submit" [disabled]="!formulario.valid">
+            <i class="bi bi-plus-circle" *ngIf="!cargando"></i>
+            <i class="bi bi-hourglass-split" *ngIf="cargando"></i>
+            {{ cargando ? 'Guardando...' : 'Guardar' }}
+          </button>
+          <button class="btn btn-outline-secondary" type="reset">
+            <i class="bi bi-x-circle"></i>
+            Limpiar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

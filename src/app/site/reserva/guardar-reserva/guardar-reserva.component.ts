@@ -19,7 +19,7 @@ import { ReservaService } from '../../../services/reserva.service';
   templateUrl: './guardar-reserva.component.html',
   styleUrl: './guardar-reserva.component.css',
 })
-export class GuardarClienteComponent {
+export class GuardarReservaComponent {
   // Variables del form.
   public cargando: boolean = false;
   public arrCliente: Cliente[] = [];

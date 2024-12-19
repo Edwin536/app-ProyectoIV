@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h3">Guardar Reserva</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <a class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1" routerLink="/reservas">
+                <i class="bi bi-backspace"></i>
+                Regresar
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Complete todos los campos requeridos
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formulario" (ngSubmit)="Guardar()">
+
+            <div class="mb-3">
+                <label class="form-label" for="fecha_ida">Fecha de ida: <span class="text-danger">*</span></label>
+                <input 
+                    type="date" 
+                    id="fecha_ida" 
+                    placeholder="Ingrese la fecha de ida..." 
+                    formControlName="fecha_ida" 
+                    class="form-control">
+                <div *ngIf="fecha_ida.errors && (fecha_ida.dirty || fecha_ida.touched)" class="text-danger">
+                    La fecha de ida es requerida.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="fecha_regreso">Fecha de regreso: <span class="text-danger">*</span></label>
+                <input 
+                    type="date" 
+                    id="fecha_regreso" 
+                    placeholder="Ingrese la fecha de regreso..." 
+                    formControlName="fecha_regreso" 
+                    class="form-control">
+                <div *ngIf="fecha_regreso.errors && (fecha_regreso.dirty || fecha_regreso.touched)" class="text-danger">
+                    La fecha de regreso es requerida.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="precio">Precio: <span class="text-danger">*</span></label>
+                <input 
+                    type="number" 
+                    id="precio" 
+                    placeholder="Ingrese el precio..." 
+                    formControlName="precio" 
+                    class="form-control">
+                <div *ngIf="precio.errors && (precio.dirty || precio.touched)" class="text-danger">
+                    El precio es requerido.
+                </div>
+            </div>    
+
+            <div class="mb-3">
+                <label class="form-label" for="estado">Estado: <span class="text-danger">*</span></label>
+                <select id="estado" formControlName="estado" class="form-control">
+                    <option [value]="true">Activo</option>
+                    <option [value]="false">Inactivo</option>
+                </select>
+                <div *ngIf="estado.errors && (estado.dirty || estado.touched)" class="text-danger">
+                    El estado es requerido.
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Cliente: <span class="text-danger">*</span></label>
+                  <select class="form-select" formControlName="cliente">
+                    <option value="" disabled selected>Seleccione un cliente</option>
+                    <option *ngFor="let p of arrCliente" [value]="p.idCliente">{{ p.nombre }}</option>
+                  </select>
+                  <span *ngIf="cliente.invalid && (cliente.dirty || cliente.touched)" class="text-danger">
+                    El cliente es requerido.
+                  </span>
+                </div>
+              </div>            
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-outline-primary me-md-2" type="submit" [disabled]="!formulario.valid">
+                    <span *ngIf="cargando"><i class="bi bi-hourglass-split"></i> Guardando...</span>
+                    <span *ngIf="!cargando"><i class="bi bi-plus-circle"></i> Guardar</span>
+                </button>
+                <button class="btn btn-outline-secondary" type="reset">
+                    <i class="bi bi-x-circle"></i>
+                    Limpiar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
